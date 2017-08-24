@@ -1,14 +1,14 @@
 module Fastlane
   module Actions
     class XamarinBuildAction < Action
-      MDTOOL = '/Applications/Xamarin\ Studio.app/Contents/MacOS/mdtool'.freeze
+      VSTOOL = '/Applications/Visual\ Studio.app/Contents/MacOS/vstool'.freeze
 
       def self.run(params)
         platform = params[:platform]
         build_type = params[:target]
 
         configuration = "--configuration:#{build_type}|#{platform}"
-        xamarin_command = "#{MDTOOL} build #{params[:solution]} \"#{configuration}\""
+        xamarin_command = "#{VSTOOL} build #{params[:solution]} \"#{configuration}\""
 
         Helper::XamarinBuildHelper.bash(xamarin_command, !params[:print_all])
 
